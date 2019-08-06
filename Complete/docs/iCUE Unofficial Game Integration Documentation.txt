@@ -1,0 +1,148 @@
+iCUE Unofficial Game Integration Documentation
+As created by Zac McDonald (Macca_Cool)
+
+A project born out of curiousity and a desire to expand the functionality of Corsair's iCUE software and Game Integration technology. It provides a local HTTP Server application which exposes iCUE Game Integration functionality to easily used HTTP requests. The software is aimed at Corsair lighting to enhance iCUE lighting setups and easy dynamic lighting that is linked to focussed application windows. This provides a platform for which to make RGB-Lighting Game Integration possible with games and software not supported by Corsair. This document will outline the functions exposed by the application and the settings that define how it behaves.
+
+Installation:
+	a
+
+Functions:
+	Default-endpoint: 127.0.0.1:25555
+	ALL are HTTP GET Requests
+
+	GetGame
+	/icue?func=getgame
+	/icue?func=getgame&game={game_name}
+	Returns JSON describing the current game and its state information. Optional game parameter, if provided it will return information relating to that game name (instead of the current game), provided it exists.
+	e.g.
+	{
+		"name": "FarCry5",
+		"currentStates":
+		{
+			"FC_Bees": true,
+			"FC_Day": true,
+			"FC_Night": false
+		},
+		"lastEventTriggered": "FC_Explosion"
+	}
+
+	GetAllGames
+	/icue?func=getallgames
+	Returns JSON describing all the game state information since launch.
+	Note: when calling SetGame, all false states will be removed from this list (and the GetGame list).
+	e.g.
+	{
+		"FarCry5":
+		{
+			"name": "FarCry5",
+			"currentStates":
+			{
+				"FC_Bees": true,
+				"FC_Day": true,
+				"FC_Night": false
+			},
+			"lastEventTriggered": "FC_Explosion"
+		},
+		"MetroExodus":
+		{
+			"name": "MetroExodus",
+			"currentStates":
+			{
+				"METE_Autumn": true,
+				"METE_Desert": false
+			},
+			"lastEventTriggered": ""
+		}
+	}
+
+	SetGame
+	/icue?func=setgame&game={game_name}
+	Sets the current game, causing the current lighting to reflect the hightest priority active state (or event) for that game. The game will remain active until SetGame is called again. Use the exact name of the games subdirectory in the GameSDKEffects directory.
+	Note: A special case is the game name, 'iCUE'. If used, the SDK will release iCUE and show default lighting, this also re-enables iCUE functions that are locked when the SDK is engaged. This is setup automatically in the default settings.json file.
+
+	ResetGame
+	/icue?func=reset&game={game_name}
+	Clears all game state and event information.
+
+	LockGame
+	/icue?func=lock&game={game_name}
+	Prevents any SetGame(...) calls until unlocked with the same game name. Do not forget to unlock and to call SetGame(...) before locking.
+
+	UnlockGame
+	/icue?func=unlock&game={game_name}
+	Unlocks the SetGame(...) function.
+
+	SetState
+	/icue?func=setstate&game={game_name}&state={state_name}
+	Sets a state to true for a given game. This will enable the profile with the same name to play, noting that only the highest priority state will play.
+
+	ClearState
+	/icue?func=clearstate&game={game_name}&state={state_name}
+	Sets a state to false for a given game. This will disable the profile with the same name from playing.
+
+	ClearAllStates
+	/icue?func=clearallstates&game={game_name}
+	Sets all states that are true to false for a given game.
+
+	SetEvent
+	/icue?func=setevent&game={game_name}&event={event_name}
+	Enables an event if the given game is the currently active game. The event profile will play until it ends itself. The profile MUST be set up to terminate after a time or otherwise in iCUE.
+
+	ClearAllEvents
+	/icue?func=clearallevents&game={game_name}
+	Stops all currently playing events for a given game.
+
+
+Settings:
+	Settings are stored as a JSON file (settings.json). A default/starting settings file will be generated when launching without settings.json present.
+	In the settings file we can define which processes we want to link with certain controllers or behaviours.
+
+	Process
+	String
+	Required!
+	default: ""
+	The name of the application that we are linking to. This should be the name of the process itself, that is the name of the '.exe' file. This name can be found under 'Task Manager/Details' among other places. It is case sensitive and should not include the file extension.
+
+	Controller
+	String (Path)
+	default: ""
+	Path to the controller for the linked process. When the process is focussed, this application will be launched. Note that files must be executable, an exception is made for python (.py) files as they will work provided 'python' is defined in the system PATH variable. Other applications in the PATH variable can be used, most often in combination with the 'CommandLineArgs' setting.
+
+	CloseWithProcess
+	Boolean
+	Requires a controller!
+	default: false
+	If this is true, the controller application will be closed when the linked process is closed. This is useful for controllers that need to constantly run alongside their linked process.
+
+	CloseOnProfileSwitch
+	Boolean
+	Requires a controller!
+	default: false
+	If this is true, the controller application will be closed when another linked process is focussed. Upon refocussing the linked process, the controller will relaunch.
+
+	EmbedController
+	Boolean
+	Requires a controller!
+	default: false
+	If this is true, the controller will be embedded into the Game Integration software. This means that it will not open in a new window and will have any console outputs redirected to the Game Integration console.
+
+	CommandLineArgs
+	String
+	Requires a controller!
+	default: ""
+	Defines all command-line arguments to be passed to the controller.
+
+	AutoSetGame
+	String
+	default: ""
+	Defines if the Game Integration should automatically call SetGame(...) when switching focus to the linked process. The string value is used as the game_name parameter.
+
+	AutoSetGameOnClose
+	String
+	default: ""
+	Defines if the Game Integration should automatically call SetGame(...) when the linked process is closed. The string value is used as the game_name parameter.
+
+	LockSetGame
+	String
+	default: ""
+	Defines if the Game Integration should automatically call LockGame(...) when switching focus to the linked process and UnlockGame(...) when the linked process is closed. The string value is the game_name parameter that Game Integration will be locked to. Please note that this setting alone will not automatically call SetGame(...) before locking, please use the AutoSetGame setting for this function.

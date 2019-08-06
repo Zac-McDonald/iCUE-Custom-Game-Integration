@@ -1,0 +1,9 @@
+{
+	"Profiles":
+	[
+		{
+			"Process": "iCUE",
+			"AutoSetGame": "iCUE"
+		}
+	]
+}

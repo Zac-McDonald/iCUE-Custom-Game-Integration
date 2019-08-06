@@ -1,0 +1,10 @@
+controllers\CSGO\*
+controllers\python libraries\*
+controllers\iCUE.py
+controllers\othergames.py
+controllers\keycodes.py
+controllers\profileTester.py
+controllers\profileCycle.py
+controllers\exampleController.py
+controllers\deceitHotkey.py
+controllers\rotmg.py

@@ -1,0 +1,15 @@
+{
+	"name": "WebsiteIntegratedLighting",
+	"description" : "Helps integrate iCUE lighting effects based on current website url",
+	"version": "1.0",
+	"manifest_version": 1,
+	"persistent": false,
+	"permissions":
+	[
+		"tabs"
+	],
+	"scripts":
+	[
+		"background.js"
+	]
+}

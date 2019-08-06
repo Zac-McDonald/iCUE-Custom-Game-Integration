@@ -1,0 +1,22 @@
+{
+	"Profiles":
+	[
+		{
+			"Process": "iCUE",
+			"AutoSetGame": "iCUE"
+		},
+		{
+			"Process": "ExampleProcess",
+			"Controller": "./controllers/example/example_controller.exe",
+			"CloseWithProcess": true,
+			"CloseOnProfileSwitch": false,
+			"EmbedController": false,
+			"CommandLineArgs": "",
+			"AutoSetGame": "",
+			"AutoSetGameOnClose": "",
+			"LockSetGame": ""
+		}
+	]
+}
+
+"{\n\t\"Profiles\":\n\t[\n\t\t{\n\t\t\t\"Process\": \"iCUE\",\n\t\t\t\"AutoSetGame\": \"iCUE\"\n\t\t},\n\t\t{\n\t\t\t\"Process\": \"ExampleProcess\",\n\t\t\t\"Controller\": \"./controllers/example/example_controller.exe\",\n\t\t\t\"CloseWithProcess\": true,\n\t\t\t\"CloseOnProfileSwitch\": false,\n\t\t\t\"EmbedController\": false,\n\t\t\t\"CommandLineArgs\": \"\",\n\t\t\t\"AutoSetGame\": \"\",\n\t\t\t\"AutoSetGameOnClose\": \"\",\n\t\t\t\"LockSetGame\": \"\"\n\t\t}\n\t]\n}"
