@@ -58,6 +58,9 @@ namespace iCUE_HTTP_Server
             string currentFocus = GetFocussedProcess();
 
             // If we have switched focus to another process
+            // Note:    If a controller is manually launched (e.g. the documentation Javascript), refocussing to a linked process WILL NOT trigger AutoSetGame.
+            //          This is by design to allow switching between unlinked processes without interupting lighting. We could trigger AutoSetGame whenever we
+            //          refocus, however this unfortunently causes an undesirable flickering effect. Therefore use unlinked/manual controllers at your own risk.
             if (currentFocus != currentLinkedProcess)
             {
                 // Is the new process another linked process

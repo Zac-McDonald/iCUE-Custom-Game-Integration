@@ -1,6 +1,4 @@
 import iCUE
-from os import listdir
-from os.path import isfile, join
 
 game = input('Game Name: ')
 iCUE.SetGame(game)
