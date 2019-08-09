@@ -1,0 +1,203 @@
+:root
+{
+	/* Color Reference: https://colorlib.com/etc/metro-colors/ */
+	--main-background-color: #424242;
+	--main-text-color: #fff4ef;
+	--link-color: #f1c60e;
+	--link-inactive-color: #a2a2a2;
+	--headers-background-color: #000000;
+
+	--icue-red: #eb212e;
+	--icue-yellow: #ffd82e;
+	--icue-green: #1bf050;
+	--icue-teal: #00afec;
+	--icue-blue: #005ca8;
+	--icue-magenta: #bb238c;
+}
+
+
+/* ------- GLOBAL CSS ------- */
+/*
+html, body
+{
+	height: 100%;
+
+	display: flex;
+	flex-direction: column;
+}*/
+
+*
+{
+	font-family: sans-serif;
+	background-color: var(--main-background-color);
+	color: var(--main-text-color);
+}
+
+pre *
+{
+	background-color: transparent;
+}
+
+a
+{
+	color: var(--link-color);
+	text-decoration: none;
+}
+
+.alert, .alert *
+{
+	color: var(--icue-red);
+}
+
+/* ------- HEADER CSS ------- */
+
+header
+{
+	background-color: var(--headers-background-color);
+	width: 100%;
+	margin-top: 0px;
+	padding: 5px 0px;
+	margin-bottom: 10px;
+}
+
+header h1, header h2
+{
+	background-color: var(--headers-background-color);
+	width: 100%;
+	text-align: center;
+	text-decoration: none;
+}
+
+aside
+{
+	border: 5px solid var(--headers-background-color);
+	display: inline-block;
+}
+
+aside p
+{
+	background-color: var(--headers-background-color);
+	margin-top: 0px;
+	padding: 5px 20px;
+	font-weight: bold;
+}
+
+aside li
+{
+	padding: 5px 0px;
+}
+
+#Introduction
+{
+	font-size: 18px;
+	margin: 20px 15px;
+	padding: 0px 20px;
+	display: inline-block;
+	max-width: 85%;
+}
+
+/* ------- COMMON SECTION CSS ------- */
+
+.list-group
+{
+	margin: 30px 30px;
+	border: 3px solid var(--headers-background-color);
+	padding-bottom: 20px;
+}
+
+.list-group h2
+{
+	background-color: var(--headers-background-color);
+	padding: 10px 20px;
+	margin-top: 0px;
+}
+
+.list-group p, .list-group ul
+{
+	margin: 0px 30px;
+}
+
+.list-group > p
+{
+	font-size: 18px;
+	padding-bottom: 20px;
+}
+
+.list-group > ul
+{
+	list-style-type: none;
+}
+
+.list-group > ul > li
+{
+	border-top: 2px solid var(--headers-background-color);
+	padding-bottom: 10px;
+}
+
+/* ------- FUNCTIONS CSS ------- */
+
+#Functions > p > label
+{
+	padding-left: 20px;
+	padding-right: 5px;
+}
+
+#Functions > p > input
+{
+	font-size: 16px;
+}
+
+#Functions > ul > li em
+{
+	color: var(--link-inactive-color);
+}
+
+.try-function label
+{
+	padding-left: 20px;
+	padding-right: 5px;
+}
+
+.try-function input
+{
+	font-size: 16px;
+}
+
+.try-function a
+{
+	padding-left: 10px;
+}
+
+.code-title
+{
+	font-size: 18px;
+	position: relative;
+	left: -30px;
+	top: 10px;
+}
+
+/* ------- SETTINGS CSS ------- */
+
+#Settings > ul > li > .details em
+{
+	color: var(--link-inactive-color);
+}
+
+/* ------- FOOTER CSS ------- */
+
+footer
+{
+	text-align: center;
+	margin-bottom: 0px;
+	padding-bottom: 20px;
+}
+
+footer, footer *
+{
+	background-color: var(--headers-background-color);
+}
+
+footer hr
+{
+	color: transparent;
+}
