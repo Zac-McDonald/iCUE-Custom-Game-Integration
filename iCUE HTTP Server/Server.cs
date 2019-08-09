@@ -24,8 +24,11 @@ namespace iCUE_HTTP_Server
 
             // Setup and start the listener, add more prefixes for multiple access points
             HttpListener listener = new HttpListener();
-            listener.Prefixes.Add(string.Format("http://{0}:{1}/", boundIP, port));
+            string prefix = string.Format("http://{0}:{1}/", boundIP, port);
+            listener.Prefixes.Add(prefix);
             listener.Start();
+
+            Console.WriteLine(pre + "HTTP Server listening to {0}", prefix);
 
             // Core processing loop for HTTP Requests
             while (Program.isRunning)

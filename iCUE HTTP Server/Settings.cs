@@ -15,7 +15,7 @@ namespace iCUE_HTTP_Server
         // Key: process name, Value: profile object
         public static Dictionary<string, Profile> processControllers;
 
-        public static string defaultSettingsJSON = "{\n\t\"Profiles\":\n\t[\n\t\t{\n\t\t\t\"Process\": \"iCUE\",\n\t\t\t\"AutoSetGame\": \"iCUE\"\n\t\t},\n\t\t{\n\t\t\t\"Process\": \"ExampleProcess\",\n\t\t\t\"Controller\": \"./controllers/example/example_controller.exe\",\n\t\t\t\"CloseWithProcess\": true,\n\t\t\t\"CloseOnProfileSwitch\": false,\n\t\t\t\"EmbedController\": false,\n\t\t\t\"CommandLineArgs\": \"\",\n\t\t\t\"AutoSetGame\": \"\",\n\t\t\t\"AutoSetGameOnClose\": \"\",\n\t\t\t\"LockSetGame\": \"\"\n\t\t}\n\t]\n}";
+        public static string defaultSettingsJSON = "{\n\t\"BoundIP\": \"127.0.0.1\",\n\t\"Port\": \"25555\",\n\t\"Profiles\":\n\t[\n\t\t{\n\t\t\t\"Process\": \"iCUE\",\n\t\t\t\"AutoSetGame\": \"iCUE\"\n\t\t},\n\t\t{\n\t\t\t\"Process\": \"ExampleProcess\",\n\t\t\t\"Controller\": \"./controllers/example/example_controller.exe\",\n\t\t\t\"CloseWithProcess\": true,\n\t\t\t\"CloseOnProfileSwitch\": false,\n\t\t\t\"EmbedController\": false,\n\t\t\t\"CommandLineArgs\": \"\",\n\t\t\t\"AutoSetGame\": \"\",\n\t\t\t\"AutoSetGameOnClose\": \"\",\n\t\t\t\"LockSetGame\": \"\"\n\t\t}\n\t]\n}";
 
         private static string pre { get { return string.Format("{0}   Settings -- ", DateTime.Now.ToString("[HH:mm:ss]")); } }
 
@@ -41,6 +41,16 @@ namespace iCUE_HTTP_Server
             // Read data from JSON
             SettingsJSON jsonSettings = JsonConvert.DeserializeObject<SettingsJSON>(contents);
 
+            if (!String.IsNullOrEmpty(jsonSettings.BoundIP))
+            {
+                Server.boundIP = jsonSettings.BoundIP;
+            }
+
+            if (!String.IsNullOrEmpty(jsonSettings.Port))
+            {
+                Server.port = jsonSettings.Port;
+            }
+
             processControllers = new Dictionary<string, Profile>();
             foreach (ProfileJSON profile in jsonSettings.Profiles)
             {
@@ -64,6 +74,8 @@ namespace iCUE_HTTP_Server
         // Classes used for easy deserialise JSON
         private class SettingsJSON
         {
+            public string BoundIP { get; set; }
+            public string Port { get; set; }
             public IList<ProfileJSON> Profiles { get; set; }
         }
 

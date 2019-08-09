@@ -14,12 +14,15 @@ namespace iCUE_CgSDK_Handler
 
         private static string pre { get { return string.Format("{0}    Handler -- ", DateTime.Now.ToString("[HH:mm:ss]")); } }
 
+        // The CgSDK Handler is only used a proxy to CgSDK due to SetGame limitations (can't call twice)
+        // Therefore all the Handler does is run a PipeClient and relay messages
         static void Main(string[] args)
         {
             running = true;
             PipeClient.Run();
         }
 
+        // Error Codes from the Corsair SDK
         public static string ErrorToString(int error)
         {
             switch (error)
@@ -41,6 +44,7 @@ namespace iCUE_CgSDK_Handler
             }
         }
 
+        // Implement all CgSDK proxy functions
         public static int GetLastError() { return Cg.GetLastError(); }
         public static void PerformProtocolHandshake() { Cg.PerformProtocolHandshake(); }
         public static bool RequestControl() { return Cg.RequestControl(); }
