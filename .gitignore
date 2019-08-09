@@ -1,4 +1,14 @@
-./Complete/
-./custom\ icon/
-./*.txt
+# Unneccessary/Testing folders and files
+Complete/
+custom\ icon/
+*.txt
+
+# Python cache
 **/__pycache__/
+
+# Unneccessary Visual Studio files
+.vs/
+iCUE\ CgSDK\ Handler/bin/Debug/
+iCUE\ CgSDK\ Handler/bin/Release/
+iCUE\ HTTP\ Server/bin/Debug/
+iCUE\ HTTP\ Server/bin/Release/
