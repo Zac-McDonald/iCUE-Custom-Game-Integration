@@ -160,6 +160,14 @@ namespace iCUE_HTTP_Server
                     // Setup arguments
                     activeControllers[processName].StartInfo.Arguments += string.Format(" {0} ", Settings.processControllers[processName].controller);
                 }
+                // Detect if controller is a ruby script
+                else if (Settings.processControllers[processName].controller.EndsWith(".rb"))
+                {
+                    activeControllers[processName].StartInfo.FileName = "ruby";
+
+                    // Setup arguments
+                    activeControllers[processName].StartInfo.Arguments += string.Format(" {0} ", Settings.processControllers[processName].controller);
+                }
                 else
                 {
                     activeControllers[processName].StartInfo.FileName = Settings.processControllers[processName].controller;
