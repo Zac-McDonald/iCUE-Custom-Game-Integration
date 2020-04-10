@@ -15,34 +15,19 @@
 	<!-- Function for testing HTTP GET Requests for the Game Integration software -->
 	<script>
 		// For sending requests to the local iCUE HTTP Server
-		function iCUERequest(params)
+		async function iCUERequest(params)
 		{
 			var ip = document.getElementById("ip_endpoint").value;
 			var port = document.getElementById("port_endpoint").value;
 
-			var url = `http://${ip}:${port}/icue`;
-			
 			// Construct the query string
-			var counter = 0;
-			for (var key in params)
+			const url = new URL(`http://${ip}:${port}/icue`);
+			for (const key in params)
 			{
-				if (counter == 0)
-				{
-					url = url + '?';
-				}
-				else
-				{
-					url = url + '&';
-				}
-
-				url = url + key + '=' + params[key];
-				counter = counter + 1;
+				url.searchParams.append(key, params[key]);
 			}
-
-			var request = new XMLHttpRequest();
-			request.open('GET', url, false);
-			request.send();
-			alert(request.responseText);
+			const response = await fetch(url, {method: "POST", mode: "no-cors"});
+			// we can't do anything with the response, because of the CORS Policy
 		}
 
 		// Add a listener to inputs so that when pressing enter it will automatically send the request (or go to the next input)
