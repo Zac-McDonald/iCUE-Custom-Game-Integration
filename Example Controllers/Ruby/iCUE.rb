@@ -3,7 +3,7 @@ require 'net/http'
 
 class ICUE
 	@@url = 'http://127.0.0.1:25555/icue'
-	@@profile_dir = 'C:/Program Files (x86)/Corsair/CORSAIR iCUE Software/GameSdkEffects/'
+	@@profile_dir = 'C:/ProgramData/Corsair/CUE/GameSdkEffects/'
 
 	def self.send_get_request (params)
 		uri = URI(@@url)
