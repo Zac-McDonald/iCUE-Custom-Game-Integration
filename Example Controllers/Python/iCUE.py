@@ -3,7 +3,7 @@ from os import listdir
 from os.path import isfile, join, splitext
 
 url = 'http://127.0.0.1:25555/icue'
-profileDir = 'C:/Program Files (x86)/Corsair/CORSAIR iCUE Software/GameSdkEffects/'
+profileDir = 'C:/ProgramData/Corsair/CUE/GameSdkEffects/'
 
 def ListProfiles (gameName):
 	gameDir = profileDir + gameName
