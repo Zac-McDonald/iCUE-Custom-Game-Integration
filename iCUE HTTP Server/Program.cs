@@ -18,7 +18,7 @@ namespace iCUE_HTTP_Server
         public const string CgSDKHandlerDir = "./iCUE CgSDK Handler.exe";
 #endif
 
-        public const string CgSDKGamesDir = "C:/Program Files (x86)/Corsair/CORSAIR iCUE Software/GameSdkEffects";
+        public const string CgSDKGamesDir = "C:/ProgramData/Corsair/CUE/GameSdkEffects";
         public static bool isRunning;
 
         private static string pre { get { return string.Format("{0}       Main -- ", DateTime.Now.ToString("[HH:mm:ss]"));  } }

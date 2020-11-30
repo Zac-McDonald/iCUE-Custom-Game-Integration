@@ -28,7 +28,7 @@ When the server is first run, it will create a file, "settings.json" which conta
 For game-integration to be setup, 3 things are required.
 1. The required process must be in "settings.json". For this, use the name of the running executable.
 2. A controller must be programmed to interact with the HTTP Server to perform the logic for the integration (see the [documentation](https://zac-mcdonald.github.io/iCUE-Custom-Game-Integration/) for more information). Using the "AutoSetGame" settings is the only instance where a controller is not required.
-3. The appropriate game folder, exported iCUE profiles and "priorities.cfg" must be present in the "GameSdkEffects" folder (C:\Program Files (x86)\Corsair\CORSAIR iCUE Software\GameSdkEffects).
+3. The appropriate game folder, exported iCUE profiles and "priorities.cfg" must be present in the "GameSdkEffects" folder (C:\ProgramData\Corsair\CUE\GameSdkEffects).
 
 The "settings.json" file defines how and when the controllers will be launched for each process as well as if the server should automatically call "SetGame" on process focus/unfocus. It should be noted that **calling "SetGame" with the game name "iCUE" will revert to default iCUE lighting**. Controller examples using Python and the [requests library](https://pypi.org/project/requests/) can be found in the "Example Controllers" folder, do note that the hotkey example (deceitHotkey.py) requires additional external libraries to capture input while unfocussed. Example controllers also contains profileCycle.py (for looping through all profiles associated with a game, use it to preview the FarCry5 and Metro lighting profiles) and profileTester.py (for testing individual lighting profiles).
 
